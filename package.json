@@ -1,0 +1,38 @@
+{
+  "name": "salus-proxy",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon --watch src src/index.ts",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
+    "cs": "prettier src --check",
+    "cs:fix": "prettier src --write",
+    "compile": "tsc -p .",
+    "docker:build": "docker build --platform linux/amd64 -t irekk/salus-proxy:latest .",
+    "docker:run": "docker run --rm -d --env-file .env --name salus-proxy -p 8080:8080 irekk/salus-proxy:latest && docker logs salus-proxy -f",
+    "docker:publish": "docker push irekk/salus-proxy",
+    "build": "yarn compile && yarn docker:build"
+  },
+  "author": "Irek Kubicki <github@ixdude.com>",
+  "license": "MIT",
+  "description": "",
+  "dependencies": {
+    "@fastify/swagger": "^9.4.0",
+    "@fastify/swagger-ui": "^5.2.0",
+    "dotenv": "^16.4.7",
+    "fastify": "^5.2.0",
+    "node-it600": "^1.0.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.17.0",
+    "@types/node": "^22.10.2",
+    "eslint": "^9.17.0",
+    "globals": "^15.14.0",
+    "nodemon": "^3.1.9",
+    "prettier": "^3.4.2",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.18.1"
+  }
+}
